@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#message {
+    margin-bottom: 8px;
+}
+
+.custom-label {
+    margin-bottom: 8px;
+    font-family: ES Klarheit Grotesk, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.control-container {
+    margin-bottom: 8px;
+}
+
+.control-container:last-child {
+    margin-bottom: 0;
+}
+
+.moods-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.moods-container .mood {
+    width: calc(100% / 3);
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 300%;
+    cursor: pointer;
+}
+
+.moods-container .mood.selected {
+    background-color: cornflowerblue;
+}
