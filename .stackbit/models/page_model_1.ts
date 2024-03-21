@@ -21,7 +21,7 @@ export const page_model_1: Model = {
         // by default, no one else can edit or publish
         return { canView: true, canEdit: false, canPublish: false };
     },
-   fields: [
+    fields: [
         {
             type: 'string',
             name: 'title'

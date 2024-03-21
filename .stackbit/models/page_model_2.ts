@@ -19,7 +19,7 @@ export const page_model_2: Model = {
         // by default, no one else can view the model or it's documents
         return { canView: false, canEdit: false, canPublish: false };
     },
-  fields: [
+    fields: [
         {
             type: 'string',
             name: 'string_field'
