@@ -9,12 +9,12 @@ export const page_model_1: Model = {
     hideContent: false,
     permissions: (options) => {
         // allow a specific role to edit but not publish
-        if (options.userContext.sso?.attributes?.roles.includes('data_model_1_editor_role')) {
+        if (options.userContext.sso?.attributes?.groups?.includes('data_model_1_editor_role')) {
             return { canView: true, canEdit: true, canPublish: false };
         }
 
         // allow a specific role to edit and publish
-        if (options.userContext.sso?.attributes?.roles.includes('data_model_1_publisher_role')) {
+        if (options.userContext.sso?.attributes?.groups?.includes('data_model_1_publisher_role')) {
             return { canView: true, canEdit: true, canPublish: true };
         }
 
