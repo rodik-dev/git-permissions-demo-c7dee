@@ -5,6 +5,13 @@ export const data_model_1: Model = {
     type: 'data',
     labelField: 'string_field',
     filePath: 'content/data/{slug}.md',
+    permissions: (options) => {        
+        if (1) {
+            return { canView: true, canEdit: false, canPublish: false };
+        }
+
+        return { canView: true, canEdit: true, canPublish: true };
+    },
     fields: [
         {
             type: 'string',
