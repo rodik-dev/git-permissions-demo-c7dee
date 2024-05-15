@@ -45,7 +45,63 @@ export const page_kitchen_sink: Model = {
             type: 'string',
             name: 'string_required',
             description: 'Required field, if not specified a validation error will be shown',
-            required: true
+            required: true,
+            actions: [
+                {
+                    name: 'upper-action',
+                    label: 'Upper action',
+                    run: async (options) => {
+                        const document = options.parentDocument;
+                        const currentTitleField = document.fields.string_required;
+                        if (!currentTitleField || !('value' in currentTitleField)) return;
+                        const sanitizedTitle = currentTitleField.value.toUpperCase().trim();
+                        options.contentSourceActions.updateDocument({
+                            document,
+                            userContext: options.getUserContextForContentSourceType(document.srcType),
+                            operations: [
+                                {
+                                    opType: 'set',
+                                    fieldPath: ['string_required'],
+                                    modelField: options.modelField,
+                                    field: { type: 'string', value: sanitizedTitle }
+                                }
+                            ]
+                        });
+                    },
+                    permissions: (options) => {
+                        if (options.userContext.role === 'only-page') {
+                            return {
+                                canExecute: false
+                            };
+                        }
+                        return {
+                            canExecute: true
+                        };
+                    }
+                },
+                {
+                    name: 'lower-action',
+                    label: 'Lower action',
+                    run: async (options) => {
+                        const document = options.parentDocument;
+                        const currentTitleField = document.fields.string_required;
+                        if (!currentTitleField || !('value' in currentTitleField)) return;
+                        const sanitizedTitle = currentTitleField.value.toLowerCase().trim();
+                        options.contentSourceActions.updateDocument({
+                            document,
+                            userContext: options.getUserContextForContentSourceType(document.srcType),
+                            operations: [
+                                {
+                                    opType: 'set',
+                                    fieldPath: ['string_required'],
+                                    modelField: options.modelField,
+                                    field: { type: 'string', value: sanitizedTitle }
+                                }
+                            ]
+                        });
+                    }
+                }
+            ]
         },
         {
             type: 'json',
