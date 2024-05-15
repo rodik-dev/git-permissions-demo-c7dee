@@ -69,13 +69,8 @@ export const page_kitchen_sink: Model = {
                         });
                     },
                     permissions: (options) => {
-                        if (options.userContext.role === 'only-page') {
-                            return {
-                                canExecute: false
-                            };
-                        }
                         return {
-                            canExecute: true
+                            canExecute: false
                         };
                     }
                 },
